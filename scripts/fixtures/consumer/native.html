@@ -1,0 +1,18 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Native module consumer</title>
+    <script type="importmap">
+      {
+        "imports": {
+          "@fuzzinghero/partitioner": "./node_modules/@fuzzinghero/partitioner/dist/index.js",
+          "@fuzzinghero/partitioner/browser": "./node_modules/@fuzzinghero/partitioner/dist/browser.js"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <script type="module" src="./native.js"></script>
+  </body>
+</html>

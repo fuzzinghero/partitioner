@@ -1,0 +1,96 @@
+{
+  "name": "@fuzzinghero/partitioner",
+  "version": "1.0.0",
+  "license": "MIT",
+  "description": "Group similar HTTP responses in HAR files and inspect their request differences.",
+  "keywords": [
+    "har",
+    "fuzzing",
+    "http-archive",
+    "response-partitioning",
+    "equivalence-partitioning",
+    "web-worker"
+  ],
+  "type": "module",
+  "bin": {
+    "partitioner": "./bin/partitioner.mjs"
+  },
+  "sideEffects": [
+    "./dist/har.worker.js"
+  ],
+  "files": [
+    "dist",
+    "bin",
+    "src/*.ts",
+    "!src/*.test.ts",
+    "examples",
+    "README.md",
+    "CONTRIBUTING.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./browser": {
+      "types": "./dist/browser.d.ts",
+      "import": "./dist/browser.js"
+    },
+    "./react": {
+      "types": "./dist/react.d.ts",
+      "import": "./dist/react.js"
+    },
+    "./core": {
+      "types": "./dist/core.d.ts",
+      "import": "./dist/core.js"
+    },
+    "./worker": {
+      "types": "./dist/har.worker.d.ts",
+      "import": "./dist/har.worker.js"
+    }
+  },
+  "scripts": {
+    "example": "node examples/analyze.mjs",
+    "build": "node scripts/check-boundary.mjs && node scripts/build.mjs",
+    "test": "node --test scripts/test-cli.mjs scripts/check-boundary.test.mjs && vitest run --config vitest.config.ts",
+    "lint": "tsc -p tsconfig.json --noEmit --noUnusedLocals --noUnusedParameters",
+    "prepare": "npm run build",
+    "format": "prettier --write src scripts bin *.json *.md vitest.config.ts .github",
+    "format:check": "prettier --check src scripts bin *.json *.md vitest.config.ts .github",
+    "test:package": "npm run build && node scripts/test-package.mjs"
+  },
+  "peerDependencies": {
+    "react": ">=18 <20"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@types/node": "24.19.1",
+    "@types/react": "19.2.8",
+    "esbuild": "0.27.2",
+    "playwright-core": "1.64.0",
+    "prettier": "3.6.2",
+    "typescript": "5.9.3",
+    "vite": "8.3.3",
+    "vitest": "4.1.11"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fuzzinghero/partitioner.git"
+  },
+  "bugs": {
+    "url": "https://github.com/fuzzinghero/partitioner/issues"
+  },
+  "homepage": "https://github.com/fuzzinghero/partitioner#readme",
+  "engines": {
+    "node": ">=22.18.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
